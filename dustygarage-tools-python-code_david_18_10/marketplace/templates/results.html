@@ -1,0 +1,137 @@
+ {% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block content %}
+<div>
+    <!-- Start Navigation -->
+
+
+
+</div>
+<script>    
+    if (typeof window.history.pushState == 'function') {
+        window.history.pushState({}, "Hide", "http://127.0.0.1:5000/results");
+    }
+</script>
+<div class="container ">
+    <div class="row ">
+        <!-- BEGIN SEARCH RESULT -->
+        <div class="col-md-12 ">
+            <div class="grid search ">
+                <div class="grid-body ">
+                    <div class="row ">
+                        <!-- BEGIN FILTERS -->
+                        <div class="col-md-3 ">
+
+                            <h3>What type of tool are you looking for ?
+                            </h3>
+
+
+
+                        </div>
+                        <!-- END FILTERS -->
+                        <!-- BEGIN RESULT -->
+
+
+                        <!-- THIS WILL BE REPLACE WITH CODE WHICH DISPLAYS DB QUERY RESULTS -->
+                        <div class="col-md-9 ">
+                            <h2>
+                                <i class="fa fa-file-o "></i>Results</h2>
+                            <hr>
+                            <!-- BEGIN SEARCH INPUT -->
+                            <div class="input-group ">
+                                <span class="input-group-btn ">
+                                    {{wtf.quick_form(form)}}
+                                    <title>Search Results</title>
+                                    <table class="table table-striped">
+                                        <tbody>
+                                            {% for item in items %}
+                                            <TR>
+                                                <TD class="c1">
+                                                    <img src={{item.images}} height="120" width="120">
+                                                </TD>
+                                                <TD class="c2">{{item.tool_name}}</TD>
+                                                <TD class="c3">${{item.list_price}}</TD>
+                                                <TD class="c4">
+                                                    <SPAN>{{item.category}}</SPAN>
+                                                </TD>
+                                                <TD class="c5">
+                                                    <SPAN>{{item.user_id}}</SPAN>
+                                                </TD>
+                                                <TD class="c6">
+                                                    {% if item.desc|length > 50 %}
+                                                    <SPAN>{{item.desc[0:50]}}...</SPAN>
+                                                    {% else %}
+                                                    <SPAN>{{item.desc}}</SPAN>
+                                                    {% endif %}
+
+                                                </TD>
+                                                <TD class="c7">
+                                                    <SPAN>{{item.date_created}}</SPAN>
+                                                </TD>
+                                            </TR>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                                </span>
+                            </div>
+
+
+                            <div class="padding "></div>
+
+                            <div class="row ">
+                                <!-- BEGIN ORDER RESULT -->
+                                <div class="col-sm-6 ">
+                                    <div class="btn-group ">
+                                        <!-- <button type="button " class="btn btn-default dropdown-toggle " data-toggle="dropdown ">
+                                            Order by
+                                            <span class="caret "></span>
+                                        </button> -->
+                                        <ul class="dropdown-menu " role="menu ">
+                                            <li>
+                                                <a href="# ">Name</a>
+                                            </li>
+                                            <li>
+                                                <a href="# ">Date</a>
+                                            </li>
+                                            <li>
+                                                <a href="# ">View</a>
+                                            </li>
+                                            <li>
+                                                <a href="# ">Rating</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- END ORDER RESULT -->
+
+                                <div class="col-md-6 text-right ">
+                                    <div class="btn-group ">
+                                        <button type="button " class="btn btn-default active ">
+                                            <i class="fa fa-list "></i>
+                                        </button>
+                                        <button type="button " class="btn btn-default ">
+                                            <i class="fa fa-th "></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- END TABLE RESULT -->
+
+                    </div>
+                    <!-- END RESULT -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END SEARCH RESULT -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</div>
+</div>
+{% endblock %}
